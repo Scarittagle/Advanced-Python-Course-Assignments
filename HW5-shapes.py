@@ -18,6 +18,7 @@ class Point:
         return "{}, {}".format(self.x, self.y)
 
     #Point Movements (Will also count Center movement of Ellipse and Circles)
+    #Note: if dx or dy's input value is Zero, then it means the point will not move on the selected axis.
     def translate(self, dx, dy):
         self.x += dx
         self.y += dy
@@ -42,10 +43,9 @@ class Ellipse(Point):
     def get_area():
         return round(math.pow(math.pi*self.x, 2) + math.pow(math.pi*self.y, 2) ,1)
 
-    #Ellipse Center Movement  (Update: Why should I have that if Point Class already has it?)
-    #def translate(self, dx, dy):
-    #    self.x += dx
-    #    self.y += dy
+    #Ellipse Center Movement
+    def translate(self, dx, dy):
+        return super().translate(dx, dy)
 
 class Circle(Ellipse):
 
@@ -55,15 +55,15 @@ class Circle(Ellipse):
     
     #Output overloading
     def __str__(self):
-        return "Ellipse with Center: ({}, {}); Radius: {}".format(self.x, self.y, self.radius)
+        return "Circle with Center: ({}, {}); Radius: {}".format(self.x, self.y, self.radius)
 
     #Get area of the circle
     def get_circle_area(self):
         return round(math.pi*math.pow(self.radius, 2), 1)
 
     #Move a circle
-    #def translate(self, dx, dy):
-    #    return super().translate(dx, dy)
+    def translate(self, dx, dy):
+        return super().translate(dx, dy)
 
     #Decide if one circle is inside another
     def contains(self,other):
